@@ -1,154 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-
-import clsx from "clsx";
-import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
-import List from "@material-ui/core/List";
-import Divider from "@material-ui/core/Divider";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 
 const today = new Date();
+const words = [
+  "responsible",
+  "office",
+  "parameter",
+  "innovation",
+  "voucher",
+  "bow",
+  "door",
+];
 
-const useStyles2 = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: "auto",
-  },
-});
-
-function SwipeableTemporaryDrawer() {
-  const classes = useStyles();
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event &&
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ ...state, [anchor]: open });
+const word = words[Math.floor(Math.random() * words.length)];
+function App() {
+  window.onbeforeunload = () => {
+    localStorage.setItem("Word", document.querySelector(".word").innerHTML);
+    localStorage.setItem("Story", document.querySelector(".entry").innerHTML);
   };
 
-  const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === "top" || anchor === "bottom",
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+  const [Word, setWord] = useState(localStorage.getItem("Word"));
+  const [Story, setStory] = useState(localStorage.getItem("Story"));
 
-  return (
-    <div>
-      <React.Fragment key={"left"}>
-        <IconButton onClick={toggleDrawer("left", true)}>
-          <MenuIcon />
-        </IconButton>
-        <SwipeableDrawer
-          anchor={"left"}
-          open={state["left"]}
-          onClose={toggleDrawer("left", false)}
-          onOpen={toggleDrawer("left", true)}
-        >
-          {list("left")}
-        </SwipeableDrawer>
-      </React.Fragment>
-    </div>
-  );
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
-
-function ButtonAppBar() {
-  const classes = useStyles();
-
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <SwipeableTemporaryDrawer />
-          {/* <Typography variant="h6" className={classes.title}>
-            News
-          </Typography> */}
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
-
-function App() {
+  const handleClick = () => {
+    alert(Story);
+  };
   return (
     <div className="App">
-      <ButtonAppBar />
+      <div>
+        <nav class="navbar navbar-expand-rg navbar-light bg-light">
+          <a class="navbar-brand" href="#">
+            Journal.Me
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">
+                  Home <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  All Journals
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  Pricing
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link disabled"
+                  href="#"
+                  tabindex="-1"
+                  aria-disabled="true"
+                >
+                  Disabled
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
       <div class="container">
         <h1 className="journal_header">
-          Today's Journal:{" "}
+          Today's Exercise:{" "}
           {`${today.getMonth()}/${today.getDay()}/${today.getFullYear()}`}
         </h1>
+        <h2 className="word_of_day">
+          Word Of The Day: <span class="word">{Word}</span>
+        </h2>
         <textarea
           className="entry"
           name="Entry"
           id=""
           cols="50"
           rows="10"
+          spellCheck="true"
+          placeholder="Write a story using the word of the day."
+          value={Story}
+          onInput={(text) => setStory(text.target.value)}
         ></textarea>
-        <Button className="publish_button" classes={{ root: "submit" }}>
+        <Button
+          className="publish_button"
+          classes={{ root: "submit" }}
+          onClick={handleClick}
+        >
           Publish
         </Button>
       </div>
