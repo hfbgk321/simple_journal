@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center safe;
+  align-items: center;
+}
+
+.journal_header {
+  order: 1;
+  flex-grow: 2;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.entry {
+  order: 2;
+  resize: none;
+  border-radius: 0.5rem;
+  font-size: 2rem;
+  flex-basis: auto;
+  flex-shrink: 0;
+  width: calc(100vw - 5rem); /* calc and viewport to the rescue */
+  height: calc(100vh - 15rem);
+}
+
+.publish_button {
+  order: 3;
+}
+
+.MuiButton-root.submit {
+  width: calc(100vw - 4.5rem);
+  height: 5rem;
+  border-radius: 0.5rem;
+  margin: 10;
+  font-size: 2rem;
+}

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.child {
+  width: 5rem;
+  height: 5rem;
+  background-color: aquamarine;
+  order: 1;
+  margin: 2rem;
+}
