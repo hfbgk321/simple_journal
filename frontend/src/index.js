@@ -2,10 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Auth0Provider
+    domain="dev-8uboymrb.us.auth0.com"
+    clientId="cbbZiy2IspiJkSPvDKmWLUs10gLhj62Y"
+    redirectUri={window.location.origin}
+  >
     <App />
-  </React.StrictMode>,
+  </Auth0Provider>,
   document.getElementById("root")
 );

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  align-content: space-around;
+}
+
+.item {
+  height: 5rem;
+  width: 5rem;
+  margin: 2rem;
+  background-color: chartreuse;
+}
