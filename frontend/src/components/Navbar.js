@@ -3,12 +3,10 @@ import "./Navbar.css";
 
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-
 import LogoutButton from "./LogoutButton";
 import LoginButton from "./LoginButton";
-
 export default function Navbar() {
-  const { user, isAuthenticated, to } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -36,7 +34,7 @@ export default function Navbar() {
             {!isAuthenticated && <LoginButton />}
             <li className="nav-item">
               <a className="nav-link" href="#">
-                <Link to="/create">Create Story</Link>
+                <Link to="/create">Create Story {}</Link>
               </a>
             </li>
             {isAuthenticated && (
