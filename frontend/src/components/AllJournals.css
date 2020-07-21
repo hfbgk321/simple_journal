@@ -6,8 +6,8 @@
   align-content: center;
 }
 .child {
-  width: 5rem;
-  height: 5rem;
+  width: 10rem;
+  height: 10rem;
   background-color: aquamarine;
   order: 1;
   margin: 2rem;

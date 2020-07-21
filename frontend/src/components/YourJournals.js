@@ -5,17 +5,13 @@ export default function YourJournals() {
   const { user, isAuthenticated } = useAuth0();
   return (
     <div className="container">
-      {isAuthenticated && (
-        <>
-          <input type="text" placeholder="Search Topics" />
-          <div className="item"></div>
-          <div className="item"></div>
-          <div className="item"></div>
-          <div className="item"></div>
-        </>
-      )}
-
-      {!isAuthenticated && <h1>Please Login to create and view your posts</h1>}
+      <>
+        <input type="text" placeholder="Search Topics" />
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+        <div className="item"></div>
+      </>
     </div>
   );
 }
