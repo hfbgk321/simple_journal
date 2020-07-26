@@ -16,6 +16,7 @@ const truncate = (str, no_word) => {
 export default function AllJournals() {
   const [Topic, setTopic] = useState("");
   const [Journals, setJournals] = useState([]);
+
   useEffect(() => {
     console.log(Topic);
     axios
@@ -40,7 +41,7 @@ export default function AllJournals() {
             <input
               type="text"
               value={journal._id}
-              style={{ display: "none" }}
+              // style={{ display: "none" }}
             />
             <h5>Author: {journal.author}</h5>
             <h6>
@@ -52,6 +53,13 @@ export default function AllJournals() {
                 journal.dateCreated.substring(0, 4)}
             </h6>
             <p>{truncate(journal.content, 6) + " ..."}</p>
+            <button
+              onClick={() => {
+                alert(journal._id);
+              }}
+            >
+              Hello
+            </button>
           </div>
         );
       })}
