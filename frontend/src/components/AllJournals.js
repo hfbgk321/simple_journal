@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AllJournals.css";
 
 import axios from "axios";
+import { Link } from "react-router-dom";
 const truncate = (str, no_word) => {
   let count = 0;
   for (let i = 0; i < str.length; i++) {
@@ -39,6 +40,7 @@ export default function AllJournals() {
         return (
           <div className="child">
             <input
+              className="id_input"
               type="text"
               value={journal._id}
               // style={{ display: "none" }}
@@ -53,13 +55,13 @@ export default function AllJournals() {
                 journal.dateCreated.substring(0, 4)}
             </h6>
             <p>{truncate(journal.content, 6) + " ..."}</p>
-            <button
-              onClick={() => {
-                alert(journal._id);
+            <Link
+              to={{
+                pathname: `/specific_journal/${journal._id}`,
               }}
             >
-              Hello
-            </button>
+              Click Me
+            </Link>
           </div>
         );
       })}
